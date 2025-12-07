@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khánh Nguyên-Chuyển mã</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="card">
+
+    <h1>Chuyển mãmã</h1>
+
+    <textarea id="inputText" placeholder="Nhập văn bản hoặc mã..."></textarea>
+
+    <p id="detect" class="detect-info">Đang chờ nhập...</p>
+
+    <h3>Chuyển đổi</h3>
+    <div class="btn-group">
+        <button onclick="convert('binary')">Binary</button>
+        <button onclick="convert('hex')">Hex</button>
+        <button onclick="convert('base64')">Base64</button>
+        <button onclick="convert('url')">URL Encode</button>
+        <button onclick="convert('rot13')">ROT13</button>
+    </div>
+
+    <h3>Giải mã</h3>
+    <div class="btn-group">
+        <button onclick="reverseConvert('binary')">Binary → Text</button>
+        <button onclick="reverseConvert('hex')">Hex → Text</button>
+        <button onclick="reverseConvert('base64')">Base64 → Text</button>
+        <button onclick="reverseConvert('url')">URL Decode</button>
+        <button onclick="reverseConvert('rot13')">ROT13 Decode</button>
+    </div>
+
+    <h3>Hash (không đảo ngược)</h3>
+    <div class="btn-group">
+        <button onclick="hashText('md5')">MD5</button>
+        <button onclick="hashText('sha256')">SHA256</button>
+    </div>
+
+    <textarea id="outputText" placeholder="Kết quả..." readonly></textarea>
+
+    <div class="btn-group">
+        <button onclick="copyResult()">Copy</button>
+        <button onclick="exportTxt()">Export .txt</button>
+        <button onclick="exportJson()">Export .json</button>
+    </div>
+
+    <div class="history-box">
+        <h3>Lịch sử</h3>
+        <ul id="historyList"></ul>
+    </div>
+
+    <div class="toggle">
+        <span>🌞</span>
+        <label class="switch">
+            <input type="checkbox" id="modeToggle">
+            <span class="slider round"></span>
+        </label>
+        <span>🌙</span>
+    </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>

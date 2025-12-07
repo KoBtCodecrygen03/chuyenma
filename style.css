@@ -1,0 +1,118 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: "Poppins", sans-serif; }
+
+body {
+    background: var(--bg);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .3s;
+}
+
+:root {
+    --bg: #0d1117;
+    --text: #fff;
+    --box: rgba(255,255,255,0.08);
+    --btn: #4d7cff;
+    --btn-hover: #698dff;
+}
+
+.light {
+    --bg: #eaeef3;
+    --text: #111;
+    --box: rgba(0,0,0,0.08);
+}
+
+.card {
+    width: 90%;
+    max-width: 850px;
+    padding: 35px;
+    background: var(--box);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    box-shadow: 0 0 35px rgba(0,0,0,0.35);
+}
+
+h1, h3 {
+    text-align: center;
+    color: var(--text);
+    margin-bottom: 15px;
+}
+
+textarea {
+    width: 100%;
+    height: 140px;
+    background: rgba(255,255,255,0.06);
+    border: none;
+    outline: none;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 15px;
+    color: var(--text);
+    resize: none;
+}
+
+.detect-info {
+    text-align: center;
+    color: #00eaff;
+    margin-bottom: 20px;
+}
+
+.btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+button {
+    flex: 1;
+    padding: 12px;
+    border-radius: 10px;
+    background: var(--btn);
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    transition: .2s;
+}
+
+button:hover { background: var(--btn-hover); transform: translateY(-2px); }
+
+.history-box {
+    margin-top: 20px;
+    background: rgba(255,255,255,0.05);
+    padding: 15px;
+    border-radius: 12px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.history-box ul { list-style: none; color: var(--text); }
+
+.history-box li {
+    padding: 8px;
+    margin-bottom: 6px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 48px; height: 25px;
+}
+.switch input { display:none; }
+
+.slider {
+    position:absolute; left:0; right:0; top:0; bottom:0;
+    background:#555; border-radius:25px;
+}
+.slider:before {
+    content:""; position:absolute;
+    width:20px; height:20px;
+    left:3px; bottom:3px;
+    background:white; border-radius:50%;
+}
+input:checked + .slider { background:#00d879; }
+input:checked + .slider:before { transform:translateX(22px); }
