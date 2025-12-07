@@ -50,6 +50,10 @@ function convert(type) {
         case "url":
             out = encodeURIComponent(text);
             break;
+            case "aes-en":
+            out = prompt("AES Key:");
+            out.value = CryptoJS.AES.encrypt(text).toString();
+            break;
         case "rot13":
             out = text.replace(/[a-zA-Z]/g, c =>
                 String.fromCharCode(
@@ -85,6 +89,9 @@ function reverseConvert(type) {
                 break;
             case "rot13":
                 out = convert("rot13");
+                break;
+                 case "aes-de":
+                 output.value = CryptoJS.AES.decrypt(text).toString(CryptoJS.enc.Utf8);
                 break;
         }
     } catch (e) {
@@ -167,3 +174,4 @@ loadHistory();
 
 document.getElementById("modeToggle")
     .addEventListener("change", () => document.body.classList.toggle("light"));
+
