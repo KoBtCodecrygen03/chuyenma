@@ -3,67 +3,413 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khánh Nguyên-Chuyển mã</title>
+    <title>Chuyển Mã Pro - nguyên.dev</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<div class="card">
+<div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+        <div class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/>
+                </svg>
+            </div>
+            <div class="logo-text">
+                <h1>Chuyển Mã Pro</h1>
+                <span class="version">v4.0</span>
+            </div>
+        </div>
+        <div class="header-actions">
+            <button class="icon-btn" id="clearAll" title="Xóa tất cả">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
+                </svg>
+            </button>
+            <div class="theme-toggle">
+                <input type="checkbox" id="modeToggle">
+                <label for="modeToggle" class="toggle-label">
+                    <span class="sun">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                        </svg>
+                    </span>
+                    <span class="moon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+                        </svg>
+                    </span>
+                </label>
+            </div>
+        </div>
+    </header>
 
-    <h1>Chuyển mã-Nguyên.dev</h1>
+    <main class="main-content">
+        <!-- Input Section -->
+        <section class="input-section">
+            <div class="section-header">
+                <h2>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+                        <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                    </svg>
+                    Nhập dữ liệu
+                </h2>
+                <div class="input-stats">
+                    <span id="charCount">0 ký tự</span>
+                    <span class="separator">|</span>
+                    <span id="byteCount">0 bytes</span>
+                </div>
+            </div>
+            <div class="textarea-wrapper">
+                <textarea id="inputText" placeholder="Nhập văn bản, mã nhị phân, hex, base64, morse..."></textarea>
+                <button class="paste-btn" id="pasteBtn" title="Dán từ clipboard">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/>
+                        <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
+                    </svg>
+                </button>
+            </div>
+        </section>
 
-    <textarea id="inputText" placeholder="Nhập văn bản hoặc mã..."></textarea>
+        <!-- Smart Detection Console -->
+        <section class="console-section">
+            <div class="console-header">
+                <div class="console-title">
+                    <div class="console-dots">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                    <span class="console-title-text">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="ai-icon">
+                            <path d="M12 2a2 2 0 012 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 017 7h1a1 1 0 011 1v3a1 1 0 01-1 1h-1v1a2 2 0 01-2 2H5a2 2 0 01-2-2v-1H2a1 1 0 01-1-1v-3a1 1 0 011-1h1a7 7 0 017-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 012-2z"/>
+                            <circle cx="7.5" cy="14.5" r="1.5"/>
+                            <circle cx="16.5" cy="14.5" r="1.5"/>
+                        </svg>
+                        <span>AI Smart Console</span>
+                    </span>
+                </div>
+                <div class="console-controls">
+                    <button class="console-ctrl-btn" id="clearConsole" title="Xóa console">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 6h18M8 6V4h8v2M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6"/>
+                        </svg>
+                    </button>
+                    <div class="console-status" id="consoleStatus">
+                        <span class="status-indicator">
+                            <span class="status-ring"></span>
+                            <span class="status-dot"></span>
+                        </span>
+                        <span class="status-text">Sẵn sàng</span>
+                    </div>
+                </div>
+            </div>
+            <div class="console-body" id="consoleBody">
+                <div class="console-welcome">
+                    <div class="welcome-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2a2 2 0 012 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 017 7h1a1 1 0 011 1v3a1 1 0 01-1 1h-1v1a2 2 0 01-2 2H5a2 2 0 01-2-2v-1H2a1 1 0 01-1-1v-3a1 1 0 011-1h1a7 7 0 017-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 012-2z"/>
+                            <circle cx="7.5" cy="14.5" r="1.5"/>
+                            <circle cx="16.5" cy="14.5" r="1.5"/>
+                        </svg>
+                    </div>
+                    <div class="welcome-text">
+                        <h3>Chào mừng đến với AI Smart Console</h3>
+                        <p>Nhập dữ liệu để tôi phân tích tự động hoặc sử dụng các lệnh bên dưới</p>
+                    </div>
+                    <div class="welcome-commands">
+                        <span class="welcome-cmd" onclick="executeCmd('help')">help</span>
+                        <span class="welcome-cmd" onclick="executeCmd('analyze')">analyze</span>
+                        <span class="welcome-cmd" onclick="executeCmd('version')">version</span>
+                        <span class="welcome-cmd" onclick="executeCmd('list')">list</span>
+                    </div>
+                </div>
+            </div>
+            <div class="console-input-area">
+                <span class="console-prompt">$</span>
+                <input type="text" id="consoleInput" placeholder="Nhập lệnh: help, analyze, encode binary..." autocomplete="off">
+                <button class="console-send" id="consoleSend">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                    </svg>
+                </button>
+            </div>
+        </section>
 
-    <p id="detect" class="detect-info">Đang chờ nhập...</p>
+        <!-- Convert Actions -->
+        <section class="actions-section">
+            <div class="action-group">
+                <h3>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 1l4 4-4 4M3 11V9a4 4 0 014-4h14M7 23l-4-4 4-4M21 13v2a4 4 0 01-4 4H3"/>
+                    </svg>
+                    Mã hóa
+                </h3>
+                <div class="btn-grid">
+                    <button class="action-btn encode" data-type="binary">
+                        <span class="btn-icon">01</span>
+                        <span class="btn-label">Binary</span>
+                    </button>
+                    <button class="action-btn encode" data-type="hex">
+                        <span class="btn-icon">0x</span>
+                        <span class="btn-label">Hex</span>
+                    </button>
+                    <button class="action-btn encode" data-type="base64">
+                        <span class="btn-icon">B64</span>
+                        <span class="btn-label">Base64</span>
+                    </button>
+                    <button class="action-btn encode" data-type="url">
+                        <span class="btn-icon">%</span>
+                        <span class="btn-label">URL</span>
+                    </button>
+                    <button class="action-btn encode" data-type="rot13">
+                        <span class="btn-icon">R13</span>
+                        <span class="btn-label">ROT13</span>
+                    </button>
+                    <button class="action-btn encode" data-type="rot47">
+                        <span class="btn-icon">R47</span>
+                        <span class="btn-label">ROT47</span>
+                    </button>
+                    <button class="action-btn encode" data-type="morse">
+                        <span class="btn-icon">.-</span>
+                        <span class="btn-label">Morse</span>
+                    </button>
+                    <button class="action-btn encode" data-type="reverse">
+                        <span class="btn-icon">REV</span>
+                        <span class="btn-label">Reverse</span>
+                    </button>
+                    <button class="action-btn encode" data-type="atbash">
+                        <span class="btn-icon">ATB</span>
+                        <span class="btn-label">Atbash</span>
+                    </button>
+                    <button class="action-btn encode caesar" data-type="caesar-encrypt">
+                        <span class="btn-icon">C</span>
+                        <span class="btn-label">Caesar</span>
+                    </button>
+                    <button class="action-btn encode vigenere" data-type="vigenere-encrypt">
+                        <span class="btn-icon">VIG</span>
+                        <span class="btn-label">Vigenère</span>
+                    </button>
+                    <button class="action-btn encode aes" data-type="aes-encrypt">
+                        <span class="btn-icon">AES</span>
+                        <span class="btn-label">AES</span>
+                    </button>
+                </div>
+            </div>
 
-    <h3>Chuyển đổi</h3>
-    <div class="btn-group">
-        <button onclick="convert('binary')">Binary</button>
-        <button onclick="convert('hex')">Hex</button>
-        <button onclick="convert('base64')">Base64</button>
-        <button onclick="convert('url')">URL Encode</button>
-        <button onclick="convert('rot13')">ROT13</button>
-        <button onclick="reverseConvert('aes-en')">AES Encrypt</button>
+            <div class="action-group">
+                <h3>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.778 7.778 5.5 5.5 0 017.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/>
+                    </svg>
+                    Giải mã
+                </h3>
+                <div class="btn-grid">
+                    <button class="action-btn decode" data-type="binary">
+                        <span class="btn-icon">01</span>
+                        <span class="btn-label">Binary</span>
+                    </button>
+                    <button class="action-btn decode" data-type="hex">
+                        <span class="btn-icon">0x</span>
+                        <span class="btn-label">Hex</span>
+                    </button>
+                    <button class="action-btn decode" data-type="base64">
+                        <span class="btn-icon">B64</span>
+                        <span class="btn-label">Base64</span>
+                    </button>
+                    <button class="action-btn decode" data-type="url">
+                        <span class="btn-icon">%</span>
+                        <span class="btn-label">URL</span>
+                    </button>
+                    <button class="action-btn decode" data-type="rot13">
+                        <span class="btn-icon">R13</span>
+                        <span class="btn-label">ROT13</span>
+                    </button>
+                    <button class="action-btn decode" data-type="rot47">
+                        <span class="btn-icon">R47</span>
+                        <span class="btn-label">ROT47</span>
+                    </button>
+                    <button class="action-btn decode" data-type="morse">
+                        <span class="btn-icon">.-</span>
+                        <span class="btn-label">Morse</span>
+                    </button>
+                    <button class="action-btn decode" data-type="reverse">
+                        <span class="btn-icon">REV</span>
+                        <span class="btn-label">Reverse</span>
+                    </button>
+                    <button class="action-btn decode" data-type="atbash">
+                        <span class="btn-icon">ATB</span>
+                        <span class="btn-label">Atbash</span>
+                    </button>
+                    <button class="action-btn decode caesar" data-type="caesar-decrypt">
+                        <span class="btn-icon">C</span>
+                        <span class="btn-label">Caesar</span>
+                    </button>
+                    <button class="action-btn decode vigenere" data-type="vigenere-decrypt">
+                        <span class="btn-icon">VIG</span>
+                        <span class="btn-label">Vigenère</span>
+                    </button>
+                    <button class="action-btn decode aes" data-type="aes-decrypt">
+                        <span class="btn-icon">AES</span>
+                        <span class="btn-label">AES</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="action-group">
+                <h3>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                    </svg>
+                    Hash (không đảo ngược)
+                </h3>
+                <div class="btn-grid hash-grid">
+                    <button class="action-btn hash" data-type="md5">
+                        <span class="btn-icon">#</span>
+                        <span class="btn-label">MD5</span>
+                    </button>
+                    <button class="action-btn hash" data-type="sha256">
+                        <span class="btn-icon">#</span>
+                        <span class="btn-label">SHA256</span>
+                    </button>
+                    <button class="action-btn hash" data-type="sha512">
+                        <span class="btn-icon">#</span>
+                        <span class="btn-label">SHA512</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Output Section -->
+        <section class="output-section">
+            <div class="section-header">
+                <h2>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                        <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+                    </svg>
+                    Kết quả
+                </h2>
+                <div class="output-actions">
+                    <button class="small-btn" id="copyBtn" title="Copy">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                            <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+                        </svg>
+                        Copy
+                    </button>
+                    <button class="small-btn" id="exportTxt" title="Export TXT">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                        </svg>
+                        .txt
+                    </button>
+                    <button class="small-btn" id="exportJson" title="Export JSON">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                        </svg>
+                        .json
+                    </button>
+                </div>
+            </div>
+            <div class="textarea-wrapper">
+                <textarea id="outputText" placeholder="Kết quả sẽ hiển thị ở đây..." readonly></textarea>
+            </div>
+        </section>
+
+        <!-- History Section -->
+        <section class="history-section">
+            <div class="section-header">
+                <h2>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 6v6l4 2"/>
+                    </svg>
+                    Lịch sử hoạt động
+                </h2>
+                <button class="small-btn danger" id="clearHistory">Xóa lịch sử</button>
+            </div>
+            <ul class="history-list" id="historyList"></ul>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <div class="footer-content">
+            <span class="made-by">Made with <span class="heart">♥</span> by <a href="#" class="author">nguyên.dev</a></span>
+            <span class="separator">|</span>
+            <span class="copyright">© 2025 Chuyển Mã Pro</span>
+        </div>
+    </footer>
+</div>
+
+<!-- AES Modal -->
+<div class="modal-overlay" id="aesModal">
+    <div class="modal">
+        <div class="modal-header">
+            <h3 id="aesModalTitle">AES Encryption</h3>
+            <button class="modal-close" id="closeModal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <label for="aesKey">Nhập khóa bảo mật:</label>
+            <input type="password" id="aesKey" placeholder="Nhập key AES...">
+            <div class="modal-hint">Key phải giống nhau khi mã hóa và giải mã</div>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-btn cancel" id="cancelAes">Hủy</button>
+            <button class="modal-btn confirm" id="confirmAes">Xác nhận</button>
+        </div>
     </div>
+</div>
 
-    <h3>Giải mã</h3>
-    <div class="btn-group">
-        <button onclick="reverseConvert('binary')">Binary → Text</button>
-        <button onclick="reverseConvert('hex')">Hex → Text</button>
-        <button onclick="reverseConvert('base64')">Base64 → Text</button>
-        <button onclick="reverseConvert('url')">URL Decode</button>
-        <button onclick="reverseConvert('rot13')">ROT13 Decode</button>
-        <button onclick="reverseConvert('aes-dede')">AES Decrypt</button>
+<!-- Caesar Modal -->
+<div class="modal-overlay" id="caesarModal">
+    <div class="modal">
+        <div class="modal-header">
+            <h3 id="caesarModalTitle">Caesar Cipher</h3>
+            <button class="modal-close" id="closeCaesarModal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <label for="caesarShift">Nhập số dịch chuyển (1-25):</label>
+            <input type="number" id="caesarShift" placeholder="VD: 3" min="1" max="25" value="3">
+            <div class="modal-hint">Mặc định là 3 (như Caesar gốc). Số càng lớn, dịch chuyển càng nhiều.</div>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-btn cancel" id="cancelCaesar">Hủy</button>
+            <button class="modal-btn confirm" id="confirmCaesar">Xác nhận</button>
+        </div>
     </div>
+</div>
 
-    <h3>Hash (không đảo ngược)</h3>
-    <div class="btn-group">
-        <button onclick="hashText('md5')">MD5</button>
-        <button onclick="hashText('sha256')">SHA256</button>
+<!-- Vigenère Modal -->
+<div class="modal-overlay" id="vigenereModal">
+    <div class="modal">
+        <div class="modal-header">
+            <h3 id="vigenereModalTitle">Vigenère Cipher</h3>
+            <button class="modal-close" id="closeVigenereModal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <label for="vigenereKey">Nhập từ khóa (chỉ chữ cái):</label>
+            <input type="text" id="vigenereKey" placeholder="VD: SECRET">
+            <div class="modal-hint">Từ khóa sẽ được lặp lại để mã hóa toàn bộ văn bản. Chỉ sử dụng chữ cái A-Z.</div>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-btn cancel" id="cancelVigenere">Hủy</button>
+            <button class="modal-btn confirm" id="confirmVigenere">Xác nhận</button>
+        </div>
     </div>
+</div>
 
-    <textarea id="outputText" placeholder="Kết quả..." readonly></textarea>
-
-    <div class="btn-group">
-        <button onclick="copyResult()">Copy</button>
-        <button onclick="exportTxt()">Export .txt</button>
-        <button onclick="exportJson()">Export .json</button>
-    </div>
-
-    <div class="history-box">
-        <h3>Lịch sử</h3>
-        <ul id="historyList"></ul>
-    </div>
-
-    <div class="toggle">
-        <span>🌞</span>
-        <label class="switch">
-            <input type="checkbox" id="modeToggle">
-            <span class="slider round"></span>
-        </label>
-        <span>🌙</span>
-    </div>
-
+<!-- Toast Notification -->
+<div class="toast" id="toast">
+    <span class="toast-icon"></span>
+    <span class="toast-message"></span>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
@@ -71,5 +417,3 @@
 
 </body>
 </html>
-
-
